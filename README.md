@@ -117,3 +117,10 @@ pip freeze > requirements.txt
 ```shell
 pip freeze >> requirements.txt
 ```
+
+
+### Todo list
+
+* [x] 框架搭建
+* [x] 依赖添加
+* [ ] 部署
