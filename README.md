@@ -123,4 +123,5 @@ pip freeze >> requirements.txt
 
 * [x] 框架搭建
 * [x] 依赖添加
+* [x] MongoDB插入/查询
 * [ ] 部署
