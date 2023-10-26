@@ -5,6 +5,8 @@ from pydantic import BaseModel
 
 from pymongo import MongoClient
 
+from model.model import MediaRecord
+
 app = FastAPI()
 
 client = MongoClient("mongodb://localhost:27017/")  # mongo客户端
@@ -42,6 +44,17 @@ async def create_video(video_id: str, video_url: str):
         raise HTTPException(status_code=400, detail="Insert video failed.")
 
 
+@app.post("/record/")
+async def create_record(url: str, content_id: str):
+    r = MediaRecord(url=url, state=1, content_type=1)
+    record = r.dict()
+    result = db["t_record"].insert_one(record)
+    if result:
+        return {"message": f"t_record {content_id} inserted."}
+    else:
+        raise HTTPException(status_code=400, detail="Insert t_record failed.")
+
+
 @app.get("/videos/")
 async def read_videos():
     videos = []
@@ -49,3 +62,12 @@ async def read_videos():
         video["_id"] = str(video["_id"])
         videos.append(video)
     return videos
+
+
+@app.get("/records/")
+async def read_records():
+    records = []
+    for record in db["t_record"].find():
+        record["_id"] = str(record["_id"])
+        records.append(record)
+    return records
