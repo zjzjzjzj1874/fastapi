@@ -1,0 +1,22 @@
+version: "3.0"
+services:
+  fastapi:
+    image: fastapi:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi
+    restart: always
+    ports:
+      - "80:80"
+#    volumes:
+#      - app_logs:/code/volume_logs
+#    environment:
+#      - SERVICE_HOST=${SERVICE_HOST}
+#      - SERVICE_PORT=80
+#      - SERVICE_ENDPOINT=machineapi_content
+#      - SERVICE_ENV=$SERVICE_ENV
+
+#volumes:
+#  app_logs:
+#    external: true

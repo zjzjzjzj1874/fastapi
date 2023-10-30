@@ -91,7 +91,6 @@ def update_item(item_id: int, item: Item):
 ```
 服务器将会自动重载（因为在上面的步骤中你向 uvicorn 命令添加了 --reload 选项）。
 
-
 ### 添加管理依赖
 * 创建虚拟环境
 ```shell
@@ -118,10 +117,32 @@ pip freeze > requirements.txt
 pip freeze >> requirements.txt
 ```
 
+### 项目部署
+
+#### 编写Dockerfile
+见[!](Dockerfile)
+
+#### 编写docker-compose文件
+见[!](docker-compose.yml)
+
+#### 镜像构建
+```shell
+docker-compose build fastapi
+```
+#### 启动镜像
+```shell
+docker-compose up -d
+```
+#### 查看服务
+```shell
+docker ps
+```
+#### 检查项目
+如果您使用默认的配置,那么您访问本地http://0.0.0.0/docs,即可看到swagger的接口文档
 
 ### Todo list
 
 * [x] 框架搭建
 * [x] 依赖添加
 * [x] MongoDB插入/查询
-* [ ] 部署
+* [x] 添加Dockerfile&&Docker-compose部署文件
