@@ -120,10 +120,10 @@ pip freeze >> requirements.txt
 ### 项目部署
 
 #### 编写Dockerfile
-见[!](Dockerfile)
+见[Dockerfile](Dockerfile)
 
 #### 编写docker-compose文件
-见[!](docker-compose.yml)
+见[docker-compose](docker-compose.yml)
 
 #### 镜像构建
 ```shell
@@ -138,7 +138,7 @@ docker-compose up -d
 docker ps
 ```
 #### 检查项目
-如果您使用默认的配置,那么您访问本地http://0.0.0.0/docs,即可看到swagger的接口文档
+如果您使用默认的配置,那么您访问本地 http://0.0.0.0/docs ,即可看到swagger的接口文档
 
 ### Todo list
 
