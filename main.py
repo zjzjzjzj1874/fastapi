@@ -1,11 +1,13 @@
 from typing import Union
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 
 from pymongo import MongoClient
 
+from model import model
 from model.model import MediaRecord
+from loguru import logger
 
 app = FastAPI()
 
@@ -71,3 +73,20 @@ async def read_records():
         record["_id"] = str(record["_id"])
         records.append(record)
     return records
+
+
+@app.post(
+    "/callback",
+    tags=["3rd_party"],
+    response_model=model.RespContent,
+)
+def callback(
+        contents: model.ReqContent,
+        request: Request,
+):
+
+    logger.info(f"Receive:{contents}")
+    result = {
+        "code": 200,
+    }
+    return result
