@@ -1,7 +1,7 @@
 from typing import Union
 
 from fastapi import FastAPI, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from pymongo import MongoClient
 
@@ -90,3 +90,18 @@ def callback(
         "code": 200,
     }
     return result
+
+
+# 新增配置
+class AddConfigRequest(BaseModel):
+    name: str
+    notice_type: int = Field(1, alias="noticeType")
+
+
+@app.post("/test-post/")
+async def test_post(request: Request, item: AddConfigRequest):
+    print(item.dict())
+    print("type ==== ", item.notice_type)
+
+    return {"message": f"Name {item.name} inserted."}
+
